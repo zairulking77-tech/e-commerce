@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KedaiKu - Easy Shopping. Quality electronics, fashion, home, kitchen, and sports products at affordable prices. Fast delivery across Malaysia with secure payment options.">
+  <meta name="keywords" content="online shopping, Malaysia, electronics, fashion, home, kitchen, sports, e-commerce">
   <title>KedaiKu - Easy Shopping</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -11,19 +13,30 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo">kedai<span>ku</span></div>
-    <div class="nav-links">
-      <a href="#produk">Products</a>
-      <a href="#kategori">Categories</a>
-      <a href="#promosi">Promotions</a>
-      <a href="#hubungi">Contact</a>
-    </div>
+      <div class="logo">kedai<span>ku</span></div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero" onclick="toggleMobileMenu()">Home</a>
+        <a href="#produk" onclick="toggleMobileMenu()">Products</a>
+        <a href="#kategori" onclick="toggleMobileMenu()">Categories</a>
+        <a href="#promosi" onclick="toggleMobileMenu()">Promotions</a>
+        <a href="#about" onclick="toggleMobileMenu()">About Us</a>
+        <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+      </div>
     <div class="navbar-actions">
       <div class="user-badge" id="userBadge" style="display:none;">
         <span id="userNameText"></span>
         <button class="auth-logout-btn" onclick="logout()">Logout</button>
       </div>
       <button class="auth-btn" id="authBtn" onclick="openAuthModal('login')">Sign In</button>
+      <div class="search-box">
+        <i class="ti ti-search"></i>
+        <input type="text" id="searchInput" placeholder="Search products..." oninput="handleSearch(this.value)" aria-label="Search products">
+      </div>
       <button class="cart-btn" onclick="toggleCart()">
         <i class="ti ti-shopping-cart"></i>
         Cart <span class="cart-count" id="cartCount">0</span>
@@ -48,7 +61,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="hero-text">
       <div class="hero-badge">🎉 Free Shipping RM100+</div>
       <h1>Shop Easy,<br>Prices <span class="accent">Affordable</span></h1>
@@ -58,9 +71,10 @@
         <a href="#kategori" class="btn-ghost">View Categories</a>
       </div>
     </div>
-    <div class="hero-img">
-      <img src="images/your-image.jpg" alt="Hero image">
-    </div>
+      <div class="hero-img">
+        <img src="images/pic12.webp" alt="Hero image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <i class="ti ti-shopping-bag" style="display:none; font-size: 90px; color: var(--accent);"></i>
+      </div>
   </section>
 
   <!-- STATS -->
@@ -75,19 +89,23 @@
   <section class="section" id="kategori">
     <h2 class="section-title">Popular Categories</h2>
     <div class="cats">
-      <div class="cat-card" onclick="filterCategory('Electronics')">
+      <div class="cat-card" data-category="Electronics" onclick="filterCategory('Electronics')">
         <i class="ti ti-device-laptop"></i>
         <span>Electronics</span>
       </div>
-      <div class="cat-card" onclick="filterCategory('Fashion')">
+      <div class="cat-card" data-category="Fashion" onclick="filterCategory('Fashion')">
         <i class="ti ti-shirt"></i>
         <span>Fashion</span>
       </div>
-      <div class="cat-card" onclick="filterCategory('Home')">
+      <div class="cat-card" data-category="Home" onclick="filterCategory('Home')">
         <i class="ti ti-home"></i>
-        <span>Home & Kitchen</span>
+        <span>Home</span>
       </div>
-      <div class="cat-card" onclick="filterCategory('Sports')">
+      <div class="cat-card" data-category="Kitchen" onclick="filterCategory('Kitchen')">
+        <i class="ti ti-coffee"></i>
+        <span>Kitchen</span>
+      </div>
+      <div class="cat-card" data-category="Sports" onclick="filterCategory('Sports')">
         <i class="ti ti-run"></i>
         <span>Sports</span>
       </div>
@@ -96,16 +114,20 @@
 
   <!-- PRODUK -->
   <section class="section" id="produk">
-    <div class="produk-header">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="filter-btns">
-        <button class="filter-btn active" onclick="filterCategory('All')">All</button>
-        <button class="filter-btn" onclick="filterCategory('Electronics')">Electronics</button>
-        <button class="filter-btn" onclick="filterCategory('Fashion')">Fashion</button>
-        <button class="filter-btn" onclick="filterCategory('Home')">Home</button>
-        <button class="filter-btn" onclick="filterCategory('Sports')">Sports</button>
+      <div class="produk-header">
+        <div>
+          <h2 class="section-title" id="produkTitle">Featured Products</h2>
+          <p class="produk-subtitle" id="produkSubtitle">Browse all items</p>
+        </div>
+        <div class="filter-btns">
+          <button class="filter-btn active" data-category="All" onclick="filterCategory('All')">All</button>
+          <button class="filter-btn" data-category="Electronics" onclick="filterCategory('Electronics')">Electronics</button>
+          <button class="filter-btn" data-category="Fashion" onclick="filterCategory('Fashion')">Fashion</button>
+          <button class="filter-btn" data-category="Home" onclick="filterCategory('Home')">Home</button>
+          <button class="filter-btn" data-category="Kitchen" onclick="filterCategory('Kitchen')">Kitchen</button>
+          <button class="filter-btn" data-category="Sports" onclick="filterCategory('Sports')">Sports</button>
+        </div>
       </div>
-    </div>
     <div class="products" id="productGrid"></div>
   </section>
 
@@ -118,32 +140,233 @@
     <a href="#produk" class="btn-primary">View Promotion</a>
   </section>
 
+  <!-- ABOUT US -->
+  <section class="section info-section" id="about">
+    <h2 class="section-title">About KedaiKu</h2>
+    <div class="info-content">
+      <div class="info-text">
+        <p>KedaiKu is a trusted online shopping platform dedicated to providing high-quality products at affordable prices. Founded in 2026, we have grown to serve over 10,000 satisfied customers across Malaysia.</p>
+        <p>Our mission is to make online shopping easy, secure, and enjoyable for everyone. From electronics and fashion to home essentials and sports gear, we carefully select every item in our catalog to ensure quality and value.</p>
+        <p>We believe in fast delivery, excellent customer service, and transparent policies. Whether you are shopping for yourself or looking for the perfect gift, KedaiKu is your one stop destination.</p>
+      </div>
+      <div class="info-features">
+        <div class="info-feature"><i class="ti ti-truck"></i><span>Fast Delivery</span></div>
+        <div class="info-feature"><i class="ti ti-shield-check"></i><span>Secure Payments</span></div>
+        <div class="info-feature"><i class="ti ti-24-hours"></i><span>24/7 Support</span></div>
+        <div class="info-feature"><i class="ti ti-rotate-ccw"></i><span>Easy Returns</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="section info-section" id="howtoorder">
+    <h2 class="section-title">How to Order</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Browse Products</h4>
+        <p>Explore our wide range of products by category or use the search bar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Add to Cart</h4>
+        <p>Select the item you want, choose quantity, and click Add to Cart.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Checkout</h4>
+        <p>Go to your cart, review your order, and click Checkout to complete.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Receive Delivery</h4>
+        <p>Sit back and relax while we deliver your order to your doorstep.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT METHODS -->
+  <section class="section info-section" id="payment">
+    <h2 class="section-title">Payment Methods</h2>
+    <div class="info-content">
+      <p class="info-intro">We offer secure and convenient payment options for every customer.</p>
+      <div class="payment-grid">
+        <div class="payment-card">
+          <i class="ti ti-credit-card"></i>
+          <h4>Credit / Debit Card</h4>
+          <p>Visa, Mastercard, and American Express accepted.</p>
+        </div>
+        <div class="payment-card">
+          <i class="ti ti-wallet"></i>
+          <h4>Online Banking</h4>
+          <p>FPX and other local banking channels supported.</p>
+        </div>
+        <div class="payment-card">
+          <i class="ti ti-device-mobile"></i>
+          <h4>E-Wallets</h4>
+          <p>Pay with Touch 'n Go eWallet, GrabPay, and more.</p>
+        </div>
+        <div class="payment-card">
+          <i class="ti ti-cash"></i>
+          <h4>Cash on Delivery</h4>
+          <p>Pay in cash when you receive your order.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHIPPING INFORMATION -->
+  <section class="section info-section" id="shipping">
+    <h2 class="section-title">Shipping Information</h2>
+    <div class="info-content">
+      <div class="shipping-options">
+        <div class="shipping-option">
+          <h4><i class="ti ti-shipping"></i> Standard Delivery</h4>
+          <p>Delivery within 1–3 business days. Free shipping on orders above RM100.</p>
+          <span class="shipping-price">Free for orders RM100+</span>
+        </div>
+        <div class="shipping-option">
+          <h4><i class="ti ti-zap"></i> Express Delivery</h4>
+          <p>Next day delivery for selected areas. Available for an additional fee.</p>
+          <span class="shipping-price">From RM10</span>
+        </div>
+        <div class="shipping-option">
+          <h4><i class="ti ti-map-pin"></i> Pickup Points</h4>
+          <p>Collect your order from nearby convenience stores and parcel lockers.</p>
+          <span class="shipping-price">Free</span>
+        </div>
+      </div>
+      <p class="info-note">We deliver to most locations in Peninsular Malaysia, Sabah, and Sarawak. Remote areas may incur additional charges or extended delivery times.</p>
+    </div>
+  </section>
+
+  <!-- RETURNS -->
+  <section class="section info-section" id="returns">
+    <h2 class="section-title">Return &amp; Refund Policy</h2>
+    <div class="info-content">
+      <p class="info-intro">We want you to love your purchase. If you are not satisfied, we are here to help.</p>
+      <div class="returns-policy">
+        <div class="policy-item">
+          <h4>30 Day Easy Returns</h4>
+          <p>Return most items within 30 days of delivery if they are unused and in original packaging.</p>
+        </div>
+        <div class="policy-item">
+          <h4>Refund Processing</h4>
+          <p>Refunds are processed within 5–7 business days after we receive and inspect your return.</p>
+        </div>
+        <div class="policy-item">
+          <h4>Exchange Policy</h4>
+          <p>Wrong size or color? We offer free exchanges on eligible items.</p>
+        </div>
+        <div class="policy-item">
+          <h4>Damaged Items</h4>
+          <p>If your item arrives damaged, contact us within 48 hours with photos for a full replacement or refund.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY POLICY -->
+  <section class="section info-section" id="privacy">
+    <h2 class="section-title">Privacy Policy</h2>
+    <div class="info-content">
+      <p class="info-intro">Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.</p>
+      <div class="policy-list">
+        <div class="policy-item">
+          <h4>Information We Collect</h4>
+          <p>We collect your name, email, phone number, delivery address, and payment details only when you place an order or create an account.</p>
+        </div>
+        <div class="policy-item">
+          <h4>How We Use Your Data</h4>
+          <p>Your data is used to process orders, improve our services, and communicate updates. We never sell your personal information to third parties.</p>
+        </div>
+        <div class="policy-item">
+          <h4>Data Security</h4>
+          <p>We use industry-standard encryption and security measures to protect your data during transmission and storage.</p>
+        </div>
+        <div class="policy-item">
+          <h4>Cookies</h4>
+          <p>Our website uses cookies to enhance your browsing experience. You can disable cookies in your browser settings at any time.</p>
+        </div>
+      </div>
+      <p class="info-note">Last updated: July 2026. Contact us at privacy@kedaiku.my for any privacy-related concerns.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT US -->
+  <section class="section info-section" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="ti ti-mail"></i>
+          <div>
+            <h4>Email</h4>
+            <p>hello@kedaiku.my</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="ti ti-phone"></i>
+          <div>
+            <h4>Phone</h4>
+            <p>013-806 4562</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="ti ti-clock"></i>
+          <div>
+            <h4>Business Hours</h4>
+            <p>Mon – Fri: 9am – 6pm<br>Sat: 9am – 1pm</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="ti ti-map-pin"></i>
+          <div>
+            <h4>Address</h4>
+            <p>No. 12, Jalan Tun Razak,<br>50400 Kuala Lumpur, Malaysia</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); handleContactForm();">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn-primary full-width">Send Message</button>
+      </form>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer" id="hubungi">
     <div class="footer-col">
       <div class="logo">kedai<span>ku</span></div>
-      <p>Trusted online shopping platform for all of Malaysia.</p>
+      <p>Trusted online shopping platform for all of Malaysia. Quality products, fast delivery, and great customer service.</p>
     </div>
     <div class="footer-col">
-      <h4>Links</h4>
+      <h4>Shop</h4>
       <a href="#produk">Products</a>
       <a href="#kategori">Categories</a>
       <a href="#promosi">Promotions</a>
     </div>
     <div class="footer-col">
-      <h4>Support</h4>
-      <a href="mailto:hello@kedaiku.my">Contact Support</a>
-      <a href="tel:+60123456789">Call Us</a>
-      <a href="#hubungi">Contact</a>
+      <h4>Information</h4>
+      <a href="#about">About Us</a>
+      <a href="#howtoorder">How to Order</a>
+      <a href="#shipping">Shipping Info</a>
+      <a href="#payment">Payment Methods</a>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:hello@kedaiku.my"><i class="ti ti-mail"></i> hello@kedaiku.my</a>
-      <a href="tel:+60138064562"><i class="ti ti-phone"></i> 013-806 4562</a>
+      <h4>Support</h4>
+      <a href="#contact">Contact Us</a>
+      <a href="#returns">Returns & Refunds</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="mailto:hello@kedaiku.my">Contact Support</a>
+      <a href="tel:+60123456789">Call Us</a>
     </div>
   </footer>
   <div class="footer-bottom">
-    <p>© 2025 KedaiKu. All rights reserved.</p>
+    <p>© 2026 KedaiKu. All rights reserved.</p>
   </div>
 
   <div class="auth-modal-overlay" id="authModalOverlay" onclick="closeAuthModal()"></div>

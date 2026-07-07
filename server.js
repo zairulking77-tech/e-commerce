@@ -19,56 +19,56 @@ const products = [
   {
     id: 2, name: "Smart Watch", desc: "Health tracking and real-time notifications",
     price: 499, oldPrice: 699, category: "Electronics", badge: "sale",
-    color: "#EEEDFE", icon: "ti-watch", image: "images/pic 2.webp",
+    color: "#EEEDFE", icon: "ti-watch", image: "images/pic13.webp",
     sku: "SW-02", rating: 4.7, stock: 18,
     features: ["Heart rate monitor", "Sleep tracking", "Water resistant"]
   },
   {
     id: 3, name: "Mini Coffee Machine", desc: "Delicious coffee every morning, compact and lightweight",
-    price: 320, oldPrice: null, category: "Home", badge: null,
-    color: "#FAEEDA", icon: "ti-coffee", image: "images/pic3.jpg",
+    price: 320, oldPrice: null, category: "Kitchen", badge: null,
+    color: "#FAEEDA", icon: "ti-coffee", image: "images/pic2.webp",
     sku: "CM-03", rating: 4.6, stock: 12,
     features: ["Fast brewing", "Easy to clean", "Perfect for small kitchens"]
   },
   {
     id: 4, name: "LED Desk Lamp", desc: "Adjustable brightness and energy-saving performance",
     price: 79, oldPrice: null, category: "Home", badge: "new",
-    color: "#FBEAF0", icon: "ti-lamp", image: "images/pic4.webp",
+    color: "#FBEAF0", icon: "ti-lamp", image: "images/pic3.jpg",
     sku: "DL-04", rating: 4.5, stock: 29,
     features: ["Adjustable color temperature", "USB charging port", "Touch controls"]
   },
   {
     id: 5, name: "Laptop Backpack", desc: "Water-resistant design that fits a 15-inch laptop",
     price: 135, oldPrice: 180, category: "Fashion", badge: "sale",
-    color: "#E1F5EE", icon: "ti-backpack", image: "images/pic5.webp",
+    color: "#E1F5EE", icon: "ti-backpack", image: "images/pic4.webp",
     sku: "LB-05", rating: 4.7, stock: 31,
     features: ["Laptop sleeve", "Multiple pockets", "Padded shoulder straps"]
   },
   {
     id: 6, name: "Sports Shoes", desc: "Lightweight and comfortable for daily workouts",
     price: 220, oldPrice: null, category: "Sports", badge: "new",
-    color: "#EAF3DE", icon: "ti-run", image: "images/pic6.webp",
+    color: "#EAF3DE", icon: "ti-run", image: "images/pic5.webp",
     sku: "SS-06", rating: 4.6, stock: 16,
     features: ["Breathable mesh", "Cushioned sole", "Secure lace system"]
   },
   {
     id: 7, name: "Indoor Decorative Plant", desc: "Stylish and easy to care for, perfect for home",
     price: 45, oldPrice: null, category: "Home", badge: "new",
-    color: "#E1F5EE", icon: "ti-plant", image: "images/pic7.webp",
+    color: "#E1F5EE", icon: "ti-plant", image: "images/pic6.webp",
     sku: "PL-07", rating: 4.4, stock: 42,
     features: ["Low maintenance", "Decorative pot included", "Great air purifier"]
   },
   {
     id: 8, name: "Premium T-Shirt", desc: "100% cotton, available in multiple colors",
     price: 59, oldPrice: 89, category: "Fashion", badge: "sale",
-    color: "#FAECE7", icon: "ti-shirt", image: "images/pic8.webp",
+    color: "#FAECE7", icon: "ti-shirt", image: "images/pic7.webp",
     sku: "TS-08", rating: 4.5, stock: 55,
     features: ["Soft fabric", "Regular fit", "Machine washable"]
   },
   {
     id: 9, name: "Dumbbell Set", desc: "Perfect for home workouts",
     price: 180, oldPrice: null, category: "Sports", badge: null,
-    color: "#F1EFE8", icon: "ti-barbell", image: "images/pic 2.webp",
+    color: "#F1EFE8", icon: "ti-barbell", image: "images/pic8.webp",
     sku: "DB-09", rating: 4.6, stock: 20,
     features: ["Durable steel", "Ergonomic grip", "Easy storage"]
   }
